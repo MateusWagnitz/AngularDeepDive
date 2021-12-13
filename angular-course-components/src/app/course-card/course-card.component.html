@@ -1,0 +1,52 @@
+
+<ng-container *ngIf="course">
+    <div class="course-card" #container>
+    
+        <div class="course-title" [ngStyle]="cardStyles()">
+            {{ cardIndex || '' + ' ' + course.description }}
+        </div>
+
+        
+        <ng-content select="course-image" *ngIf="course.iconUrl; else noImage"></ng-content>
+        
+        <ng-content select=".course-description"></ng-content>
+        
+        <ng-template #noImage>
+
+            <ng-container *ngTemplateOutlet="noImageTemplate; context {description: course.description}"></ng-container>
+
+        </ng-template>
+        
+        
+        <ng-container [ngSwitch]="course.category">
+            <div class="course-category">
+                
+                <span class="category" *ngSwitchCase="'BEGINNER'">Beginner</span>
+                
+                <span class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</span>
+                
+                <span class="category" *ngSwitchCase="'ADVANCED'">Advanced</span>
+                
+                <span class="category" *ngSwitchDefault>All Levels</span>
+                
+            </div>
+        </ng-container>
+        
+        
+        <button (click)="onCourseViewed()">View Course</button>
+        
+    </div>
+</ng-container>
+
+<!-- #region Comments -->
+
+<!-- <img #courseImage width="300" alt="Angular Logo" *ngIf="isImageVisible(); else noImage" [src]="course.iconUrl"> -->
+<!-- <ng-template #noImage>
+    <span>No image avaible</span>  
+</ng-template> -->
+
+<!-- <ng-template #blankImage>
+    <span class="warn">{{ course.description }} has no image yet.</span>
+    <img src="/assets/empty-image.png">
+</ng-template> -->
+<!-- #endregion -->

@@ -1,0 +1,76 @@
+<div class="top-menu">
+
+    <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+
+</div>
+
+
+<div class="courses" *ngIf="courses[0] as course">
+    
+    <ng-template #blankImage let-courseName="description">
+        <span class="warn">{{ courseName }} has no image yet.</span>
+        <img src="/assets/empty-image.png">
+    </ng-template>
+
+    
+    <course-card
+    (courseSelected)="onCourseSelected($event)" [course]="course" [noImageTemplate]="blankImage">
+    
+    <course-image [src]="course.iconUrl"></course-image>
+    
+    <div class="course-description">
+        {{ course.longDescription }}
+    </div>
+    
+</course-card>
+
+</div>
+
+
+
+<!-- #region 'comments' -->
+
+<!-- <div class="courses"> some use cases for class directives on ngFor loop
+    
+    <course-card *ngFor="let course of courses; index as i; first as isFirst; last as isLast; odd as isOdd; even as isEven" 
+    [class.is-first]="isFirst" [class.is-last]="isLast" [class.is-even]="isEven" [class.is-odd]="isOdd"
+    (courseSelected)="onCourseSelected($event)" [course]="course" [cardIndex]="i + 1">
+</course-card>
+
+</div> -->
+<!-- <div class="demo"> -->
+    <!-- <div>Start Date:  {{ startDate | date: 'MM/dd/yyyy' }}</div> infamous date pipe -->
+    <!-- <div>{{ title | titlecase }}</div> font -->
+    <!-- <div>{{ price | number: '3.3-5' }}</div> number restraint -->
+    <!-- <div>{{ price | currency: 'BRL' }}</div> R$ -->
+    <!-- <div>Percentage: {{ rate | percent}}</div> % -->
+    <!-- <div>{{ courses | json }}</div> usefull for debugging -->
+    
+    <!-- <div *ngFor="let pair of course | keyvalue">
+        <div>{{ pair.key + ': ' + pair.value }}</div> grabing the key value pairs from the object
+    </div> -->
+    <!-- </div> -->
+    
+    <!-- <div class="demo">
+        <button (click)="onCoursesEdited()">Edit Courses</button>
+    </div>
+    
+    <div class="courses" #container>
+        
+        <course-card #cardRef *ngFor="let course of courses"
+        (courseSelected)="onCourseSelected($event)" [course]="course">
+    </course-card>
+    
+    
+</div> -->
+
+
+<!-- <ng-container *ngTemplateOutlet="blankImage; context: {description: course.description}">
+
+</ng-container>
+
+<hr>
+<hr> -->
+
+
+<!-- #endregion -->
